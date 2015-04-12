@@ -10,7 +10,9 @@ require 'logger'
 logger = Logger.new('dev.log')
 logger.level = Logger::DEBUG
 
-m = Ec2Meta.client(logger: logger)
+client = Ec2Meta.client(logger: logger)
+
+m = client.meta_data
 
 puts '#ami-id'
 p m.ami_id
