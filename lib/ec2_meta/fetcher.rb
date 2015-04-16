@@ -14,7 +14,7 @@ module Ec2Meta
 
     def fetch(path)
       res = http_client.get(request_path(path))
-      fail MetaNotFound if res.code == '404'
+      fail MetaNotFound, "'#{path}' not found." if res.code == '404'
       res.body
     rescue Timeout::Error => e
       logger.error 'Can\'t fetch EC2 metadata from EC2 METADATA API.'
