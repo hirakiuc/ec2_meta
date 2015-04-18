@@ -4,7 +4,7 @@ module Ec2Meta
       attr_reader :prefix
 
       def initialize(fetcher, prefix = [])
-        @fetcher = fetcher
+        @_fetcher = fetcher
         @prefix = (prefix.is_a?(::String) ? [prefix] : prefix)
       end
 
@@ -21,6 +21,10 @@ module Ec2Meta
 
       def new_prefix(part)
         prefix.dup << part
+      end
+
+      def fetcher
+        @_fetcher
       end
     end
   end
