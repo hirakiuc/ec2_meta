@@ -11,7 +11,7 @@ module Ec2Meta
       private
 
       def fetch(path)
-        @fetcher.fetch(request_path(path))
+        fetcher.fetch(request_path(path))
       end
 
       def request_path(path)
