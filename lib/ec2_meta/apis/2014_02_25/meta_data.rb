@@ -46,13 +46,13 @@ module Ec2Meta
 
       class Network < Ec2Meta::Api::Namespace
         def interfaces
-          Interfaces.new(fetcher, new_prefix('/interfaces'))
+          Interfaces.new(fetcher, new_prefix('interfaces'))
         end
       end
 
       class Interfaces < Ec2Meta::Api::Namespace
         def macs(mac = nil)
-          return MacAddress.new(fetcher, new_prefix('/macs'), mac) unless mac.nil?
+          return MacAddress.new(fetcher, new_prefix('macs'), mac) unless mac.nil?
 
           fetch('macs')
         end
