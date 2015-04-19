@@ -14,8 +14,10 @@ module Ec2Meta
 
     def fetch(path)
       res = http_client.get(request_path(path))
-      fail MetaNotFound, "'#{path}' not found." if res.code == '404'
-      res.body
+      return res.body if res.code != '404'
+
+      fail MetaNotFound, "'#{path}' not found." if fail_on_not_found?
+      nil
     rescue Timeout::Error => e
       logger.error 'Can\'t fetch EC2 metadata from EC2 METADATA API.'
       logger.error 'ec2_meta gem is only available on AWS EC2 instance.'
@@ -46,6 +48,10 @@ module Ec2Meta
 
     def request_path(path)
       '/' + API_VERSION + path
+    end
+
+    def fail_on_not_found?
+      @options[:fail_on_not_found]
     end
   end
 end
