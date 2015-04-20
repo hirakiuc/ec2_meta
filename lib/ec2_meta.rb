@@ -5,9 +5,7 @@ require 'ec2_meta/client'
 require 'ec2_meta/loader'
 require 'ec2_meta/cache'
 require 'ec2_meta/fetcher'
-
-
-require 'ec2_meta/apis/namespace.rb'
+require 'ec2_meta/apis/path.rb'
 
 require 'ec2_meta/apis/2014_02_25/base'
 require 'ec2_meta/apis/2014_02_25/meta_data'

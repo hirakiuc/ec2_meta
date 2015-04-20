@@ -5,7 +5,7 @@ module Ec2Meta
         MetaData.new(fetcher, 'meta-data')
       end
 
-      class BlockDeviceMapping < Ec2Meta::Api::Namespace
+      class BlockDeviceMapping < Ec2Meta::Api::Path
         # Fetch 'block-device-mapping/ami'
         def ami
           fetch('ami')
@@ -32,7 +32,7 @@ module Ec2Meta
         end
       end
 
-      class Iam < Ec2Meta::Api::Namespace
+      class Iam < Ec2Meta::Api::Path
         # Fetch 'iam/info'
         def info
           fetch('info')
@@ -44,13 +44,13 @@ module Ec2Meta
         end
       end
 
-      class Network < Ec2Meta::Api::Namespace
+      class Network < Ec2Meta::Api::Path
         def interfaces
           Interfaces.new(fetcher, new_prefix('interfaces'))
         end
       end
 
-      class Interfaces < Ec2Meta::Api::Namespace
+      class Interfaces < Ec2Meta::Api::Path
         def macs(mac = nil)
           return MacAddress.new(fetcher, new_prefix('macs'), mac) unless mac.nil?
 
@@ -58,7 +58,7 @@ module Ec2Meta
         end
       end
 
-      class MacAddress < Ec2Meta::Api::Namespace
+      class MacAddress < Ec2Meta::Api::Path
         def initialize(fetcher, prefix, mac_addr)
           super(fetcher, prefix)
           @mac_addr = mac_addr
@@ -124,13 +124,13 @@ module Ec2Meta
         end
       end
 
-      class Placement < Ec2Meta::Api::Namespace
+      class Placement < Ec2Meta::Api::Path
         def availability_zone
           fetch('availability-zone')
         end
       end
 
-      class PublicKeys < Ec2Meta::Api::Namespace
+      class PublicKeys < Ec2Meta::Api::Path
         def initialize(fetcher, prefix, no)
           super(fetcher, prefix)
           @key_no = no
@@ -141,19 +141,19 @@ module Ec2Meta
         end
       end
 
-      class Services < Ec2Meta::Api::Namespace
+      class Services < Ec2Meta::Api::Path
         def domain
           fetch('domain')
         end
       end
 
-      class Spot < Ec2Meta::Api::Namespace
+      class Spot < Ec2Meta::Api::Path
         def termination_time
           fetch('termination-time')
         end
       end
 
-      class MetaData < Ec2Meta::Api::Namespace
+      class MetaData < Ec2Meta::Api::Path
         %w[
           ami-id
           ami-launch-index

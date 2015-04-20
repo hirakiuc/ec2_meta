@@ -1,6 +1,6 @@
 module Ec2Meta
   module Api
-    class Namespace < BasicObject
+    class Path < BasicObject
       attr_reader :prefix
 
       def initialize(fetcher, prefix = [])
