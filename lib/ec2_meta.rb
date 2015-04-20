@@ -3,7 +3,9 @@ require 'logger'
 require 'ec2_meta/version'
 require 'ec2_meta/client'
 require 'ec2_meta/loader'
+require 'ec2_meta/cache'
 require 'ec2_meta/fetcher'
+
 
 require 'ec2_meta/apis/namespace.rb'
 
