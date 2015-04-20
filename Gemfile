@@ -6,7 +6,6 @@ gemspec
 group :development, :test do
   gem 'pry-byebug'
   gem 'gem-release'
-  gem 'io-console'
 end
 
 group :test do

@@ -31,7 +31,6 @@ GEM
     gem-release (0.7.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    io-console (0.4.2)
     method_source (0.8.2)
     mime-types (2.4.3)
     multi_json (1.11.0)
@@ -102,7 +101,6 @@ DEPENDENCIES
   coveralls
   ec2_meta!
   gem-release
-  io-console
   pry-byebug
   rake (~> 10.0)
   rspec
