@@ -3,14 +3,9 @@ require 'rubygems'
 require 'bundler/setup'
 
 require 'ec2_meta'
-
 require 'pry'
-require 'logger'
 
-logger = Logger.new('dev.log')
-logger.level = Logger::DEBUG
-
-client = Ec2Meta.client(logger: logger)
+client = Ec2Meta.client
 
 m = client.meta_data
 
