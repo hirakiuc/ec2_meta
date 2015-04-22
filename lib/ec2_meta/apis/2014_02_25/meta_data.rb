@@ -52,9 +52,34 @@ module Ec2Meta
 
       class Interfaces < Ec2Meta::Api::Path
         def macs(mac = nil)
-          return MacAddress.new(fetcher, new_prefix('macs'), mac) unless mac.nil?
+          case mac
+          when ::String
+            mac_address_for(mac)
+          when ::Integer
+            mac_address_at(mac)
+          when nil
+            fetch_macs
+          else
+            ::Kernel.raise ArgumentError, 'require String or Integer, or nil.'
+          end
+        end
 
-          fetch('macs')
+        private
+
+        def fetch_macs
+          result = fetch('macs/')
+          (result.nil? ? [] : result.split("\n").map { |v| v.chomp('/') })
+        end
+
+        def mac_address_for(address)
+          MacAddress.new(fetcher, new_prefix("macs/#{address}"), address)
+        end
+
+        def mac_address_at(position)
+          addr = fetch_macs.at(position)
+          return nil if addr.nil?
+
+          mac_address_for(addr)
         end
       end
 
@@ -79,7 +104,7 @@ module Ec2Meta
           fetch('local-hostname')
         end
 
-        def local_ipv4
+        def local_ipv4s
           fetch('local-ipv4s')
         end
 

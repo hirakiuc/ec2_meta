@@ -69,6 +69,14 @@ p m.local_ipv4
 puts '#mac'
 p m.mac
 
+puts '#network/interfaces/macs/0'
+#p m.network.interfaces.macs(0)
+
+puts '#network/interfaces/macs/0/device-number'
+p m.network.interfaces.macs(0).device_number
+
+p m.network.interfaces.macs(m.mac).device_number
+
 ### network/interfaces/macs/#{mac}
 puts '-------------'
 mac = m.network.interfaces.macs('mac')
