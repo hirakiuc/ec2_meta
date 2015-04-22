@@ -79,7 +79,7 @@ module Ec2Meta
           fetch('local-hostname')
         end
 
-        def local_ipv4
+        def local_ipv4s
           fetch('local-ipv4s')
         end
 
