@@ -5,6 +5,7 @@ require 'ec2_meta/client'
 require 'ec2_meta/loader'
 require 'ec2_meta/cache'
 require 'ec2_meta/fetcher'
+require 'ec2_meta/null_logger'
 require 'ec2_meta/apis/path.rb'
 
 require 'ec2_meta/apis/2014_02_25/base'
@@ -17,7 +18,7 @@ module Ec2Meta
 
     def client(options = {})
       opts = {
-        logger: Logger.new('/dev/null')
+        logger: ::Ec2Meta::NullLogger.new
       }.merge(options)
 
       Client.new(opts)
