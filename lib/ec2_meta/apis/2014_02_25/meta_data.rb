@@ -192,8 +192,11 @@ module Ec2Meta
           local-hostname
           local-ipv4
           mac
+          product-codes
           public-hostname
           public-ipv4
+          ramdisk-id
+          reservation-id
           reservation-id
           security-groups
         ].each do |attr|
