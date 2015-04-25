@@ -14,13 +14,19 @@ module Ec2Meta
 
     def fetch(key)
       return read(key) if exist?(key)
-      value = yield if block_given?
 
+      fail ArgumentError, 'require block' unless block_given?
+
+      value = yield
       write(key, value)
     end
 
     def exist?(key)
       @cache.key?(key.to_s)
+    end
+
+    def delete(key)
+      @cache.delete(key)
     end
 
     def clear
