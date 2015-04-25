@@ -15,6 +15,10 @@ module ApiMacros
       )
   end
 
+  def api_stub_timeout(api_version, path)
+    stub_request(:get, request_url(api_version, path)).to_timeout
+  end
+
   private
 
   def request_url(api_version, path)
