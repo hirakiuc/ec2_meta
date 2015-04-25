@@ -172,5 +172,69 @@ RSpec.describe 'api 2014-02-25 specs' do
         end
       end
     end
+
+    describe 'placement space' do
+      describe '#availability_zone' do
+        let(:expected) { 'ap-northeast-1b' }
+        before { stub('meta-data/placement/availability-zone', expected) }
+        it { expect(meta_data.placement.availability_zone).to eq(expected) }
+      end
+    end
+
+    describe '#product_codes' do
+      let(:expected) { "code1\ncode2\n" }
+      before { stub('meta-data/product-codes', expected) }
+      it { expect(meta_data.product_codes).to eq(expected) }
+    end
+
+    describe '#public_hostname' do
+      let(:expected) { 'host_name' }
+      before { stub('meta-data/public-hostname', expected) }
+      it { expect(meta_data.public_hostname).to eq(expected) }
+    end
+
+    describe '#public_ipv4' do
+      let(:expected) { '192.168.0.10' }
+      before { stub('meta-data/public-ipv4', expected) }
+      it { expect(meta_data.public_ipv4).to eq(expected) }
+    end
+
+    describe 'public_keys space' do
+      pending 'add specs'
+    end
+
+    describe '#ramdisk_id' do
+      let(:expected) { 'ridxxxx' }
+      before { stub('meta-data/ramdisk-id', expected) }
+      it { expect(meta_data.ramdisk_id).to eq(expected) }
+    end
+
+    describe '#reservation_id' do
+      let(:expected) { 'idxxxx' }
+      before { stub('meta-data/reservation-id', expected) }
+      it { expect(meta_data.reservation_id).to eq(expected) }
+    end
+
+    describe '#security_groups' do
+      let(:expected) { "groupA\ngroupB\n" }
+      before { stub('meta-data/security-groups', expected) }
+      it { expect(meta_data.security_groups).to eq(expected) }
+    end
+
+    describe 'services space' do
+      describe '#domain' do
+        let(:expected) { 'service_domain' }
+        before { stub('meta-data/services/domain', expected) }
+        it { expect(meta_data.services.domain).to eq(expected) }
+      end
+    end
+
+    describe 'spot space' do
+      describe '#termination_time' do
+        let(:expected) { '2015-01-05T18:02:00Z' }
+        before { stub('meta-data/spot/termination-time', expected) }
+        it { expect(meta_data.spot.termination_time).to eq(expected) }
+      end
+    end
   end
 end
