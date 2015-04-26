@@ -26,7 +26,7 @@ Or install it yourself as:
 
 ### Get Client
 
-```
+```ruby
 # without options
 client = Ec2Meta.client
 
@@ -54,7 +54,7 @@ Currently supports all of `Instance metadata` on [Instance Metadata and User Dat
 
 You can fetch meta data like below.
 
-```
+```ruby
 # fetch ami-id
 client.ami_id
 
