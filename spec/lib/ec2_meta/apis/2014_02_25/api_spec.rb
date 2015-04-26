@@ -155,19 +155,117 @@ RSpec.describe 'api 2014-02-25 specs' do
           end
 
           context 'with string' do
-            pending 'add spec'
+            let(:mac_addr) { 'xx:xx:xx:xx' }
+            it { expect(interfaces.macs(mac_addr)).not_to eq(nil) }
           end
 
-          context 'with exist position' do
-            pending 'add spec'
+          context 'with integer' do
+            let(:expected) { "xx:xx:xx:xx/\nyy:yy:yy:yy/\n" }
+            before { stub('meta-data/network/interfaces/macs/', expected) }
+
+            context 'with exist position' do
+              it { expect(interfaces.macs(0)).not_to eq(nil) }
+            end
+
+            context 'with non-exist position' do
+              it { expect(interfaces.macs(100)).to eq(nil) }
+            end
           end
 
-          context 'with non-exist position' do
-            pending 'add spec'
+          context 'with un-expected argument type' do
+            it { expect { interfaces.macs(key: 'value') }.to raise_error(ArgumentError) }
           end
 
           describe 'mac space' do
-            # ....
+            let(:mac_addr) { 'xx:xx:xx:xx' }
+            let(:mac) { interfaces.macs(mac_addr) }
+            let(:path_prefix) { "meta-data/network/interfaces/macs/#{mac_addr}" }
+
+            before { stub('meta-data/network/interfaces/macs/', "#{mac_addr}/\n") }
+
+            describe '#device_number' do
+              let(:expected) { '0' }
+              before { stub(path_prefix + '/device-number', expected) }
+              it { expect(mac.device_number).to eq(expected) }
+            end
+
+            describe '#ipv4_associations/public_ip' do
+              let(:expected) { '192.168.0.10' }
+              before { stub(path_prefix + '/ipv4-associations/192.168.30.10', expected) }
+              it { expect(mac.ipv4_associations('192.168.30.10')).to eq(expected) }
+            end
+
+            describe '#local_hostname' do
+              let(:expected) { 'host.local' }
+              before { stub(path_prefix + '/local-hostname', expected) }
+              it { expect(mac.local_hostname).to eq(expected) }
+            end
+
+            describe '#local_ipv4s' do
+              let(:expected) { "192.168.0.10\n" }
+              before { stub(path_prefix + '/local-ipv4s', expected) }
+              it { expect(mac.local_ipv4s).to eq(expected) }
+            end
+
+            describe '#mac' do
+              let(:expected) { 'xx:xx:xx:xx' }
+              before { stub(path_prefix + '/mac', expected) }
+              it { expect(mac.mac).to eq(expected) }
+            end
+
+            describe '#owner_id' do
+              let(:expected) { 'owner_id_xxx' }
+              before { stub(path_prefix + '/owner-id', expected) }
+              it { expect(mac.owner_id).to eq(expected) }
+            end
+
+            describe '#public_hostname' do
+              let(:expected) { 'host.public' }
+              before { stub(path_prefix + '/public-hostname', expected) }
+              it { expect(mac.public_hostname).to eq(expected) }
+            end
+
+            describe '#public_ipv4s' do
+              let(:expected) { "192.168.0.10\n" }
+              before { stub(path_prefix + '/public-ipv4s', expected) }
+              it { expect(mac.public_ipv4s).to eq(expected) }
+            end
+
+            describe '#security_groups' do
+              let(:expected) { "groupA\n" }
+              before { stub(path_prefix + '/security-groups', expected) }
+              it { expect(mac.security_groups).to eq(expected) }
+            end
+
+            describe '#security_group_ids' do
+              let(:expected) { "idxxxx\nidyyyy\n" }
+              before { stub(path_prefix + '/security-group-ids', expected) }
+              it { expect(mac.security_group_ids).to eq(expected) }
+            end
+
+            describe '#subnet_id' do
+              let(:expected) { 'subnet_id_xxx' }
+              before { stub(path_prefix + '/subnet-id', expected) }
+              it { expect(mac.subnet_id).to eq(expected) }
+            end
+
+            describe '#subnet_ipv4_cidr_block' do
+              let(:expected) { '192.168.0.0/24' }
+              before { stub(path_prefix + '/subnet-ipv4-cidr-block', expected) }
+              it { expect(mac.subnet_ipv4_cidr_block).to eq(expected) }
+            end
+
+            describe '#vpc_id' do
+              let(:expected) { 'vpc_id_xxx' }
+              before { stub(path_prefix + '/vpc-id', expected) }
+              it { expect(mac.vpc_id).to eq(expected) }
+            end
+
+            describe '#vpc_ipv4_cidr_block' do
+              let(:expected) { '192.168.0.0/24' }
+              before { stub(path_prefix + '/vpc-ipv4-cidr-block', expected) }
+              it { expect(mac.vpc_ipv4_cidr_block).to eq(expected) }
+            end
           end
         end
       end
@@ -200,7 +298,9 @@ RSpec.describe 'api 2014-02-25 specs' do
     end
 
     describe 'public_keys space' do
-      pending 'add specs'
+      let(:expected) { 'ssh-rsa AAA.........' }
+      before { stub('meta-data/public-keys/0/openssh-key', expected) }
+      it { expect(meta_data.public_keys(0).openssh_key).to eq(expected) }
     end
 
     describe '#ramdisk_id' do
