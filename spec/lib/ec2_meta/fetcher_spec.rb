@@ -68,7 +68,10 @@ RSpec.describe Ec2Meta::Fetcher do
     end
 
     context 'when unexpected eror raised' do
-      before { Net::HTTP.any_instance.stub(:get).and_raise(ArgumentError) }
+      before do
+        expect_any_instance_of(Net::HTTP).to \
+          receive(:get).and_raise(ArgumentError)
+      end
       it { expect { subject }.to raise_error(ArgumentError) }
     end
   end

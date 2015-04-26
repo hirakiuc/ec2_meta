@@ -60,7 +60,7 @@ module Ec2Meta
           when nil
             fetch_macs
           else
-            ::Kernel.raise ArgumentError, 'require String or Integer, or nil.'
+            ::Kernel.raise ::ArgumentError, 'require String or Integer, or nil.'
           end
         end
 
