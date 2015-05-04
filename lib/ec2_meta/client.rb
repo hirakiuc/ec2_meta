@@ -16,7 +16,6 @@ module Ec2Meta
     end
 
     def load_api_module
-      puts @options[:api_version]
       extend ApiLoader.api_module(@options[:api_version])
     end
   end
