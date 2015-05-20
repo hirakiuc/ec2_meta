@@ -96,17 +96,17 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
+  bundler (~> 1.7)
   codeclimate-test-reporter
   coveralls
   ec2_meta!
   gem-release
   pry-byebug
   rake (~> 10.0)
-  rspec
-  rspec-mocks
-  rubocop
-  simplecov
-  webmock
-  yard
-  yardstick
+  rspec (~> 3.2)
+  rspec-mocks (~> 3.2)
+  rubocop (~> 0.30)
+  simplecov (~> 0.9)
+  webmock (~> 1.21)
+  yard (~> 0.8)
+  yardstick (~> 0.9)
