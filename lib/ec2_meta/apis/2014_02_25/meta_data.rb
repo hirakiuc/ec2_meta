@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ec2Meta
   module Api20140225
     module MetaData
@@ -200,7 +202,7 @@ module Ec2Meta
           reservation-id
           security-groups
         ].each do |attr|
-          define_method(attr.gsub('-', '_')) do
+          define_method(attr.tr('-', '_')) do
             fetch(attr)
           end
         end

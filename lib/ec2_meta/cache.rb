@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ec2Meta
   class Cache
     def initialize
@@ -15,7 +17,7 @@ module Ec2Meta
     def fetch(key)
       return read(key) if exist?(key)
 
-      fail ArgumentError, 'require block' unless block_given?
+      raise ArgumentError, 'require block' unless block_given?
 
       value = yield
       write(key, value)

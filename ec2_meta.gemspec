@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.2'
   spec.add_development_dependency 'rspec-mocks', '~> 3.2'
   spec.add_development_dependency 'webmock', '~> 1.21'
-  spec.add_development_dependency 'rubocop', '~> 0.30'
+  spec.add_development_dependency 'rubocop', '~> 0.52'
   spec.add_development_dependency 'simplecov', '~> 0.9'
-  spec.add_development_dependency 'yard', '~> 0.8'
+  spec.add_development_dependency 'yard', '~> 0.9.11'
   spec.add_development_dependency 'yardstick', '~> 0.9'
 end
