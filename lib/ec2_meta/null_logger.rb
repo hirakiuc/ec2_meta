@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Ec2Meta
   class NullLogger
-    def debug(_progname = nil, &_block)
-    end
+    def debug(_progname = nil, &_block); end
 
     def debug?
       false
@@ -13,15 +14,13 @@ module Ec2Meta
       false
     end
 
-    def fatal(_progname = nil, &_block)
-    end
+    def fatal(_progname = nil, &_block); end
 
     def fatal?
       false
     end
 
-    def info(_progname = nil, &_block)
-    end
+    def info(_progname = nil, &_block); end
 
     def info?
       false

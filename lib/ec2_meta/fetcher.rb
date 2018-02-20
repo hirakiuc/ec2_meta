@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 require 'timeout'
 
@@ -18,7 +20,7 @@ module Ec2Meta
         res = http_client.get(request_path(path))
         break res.body if res.code != '404'
 
-        fail MetaNotFound, "'#{path}' not found." if fail_on_not_found?
+        raise MetaNotFound, "'#{path}' not found." if fail_on_not_found?
         nil
       end
     rescue Timeout::Error => e

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ec2Meta
   module Api20140225
     module Base
